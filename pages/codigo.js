@@ -3,17 +3,13 @@ const estudiante = 0.8;
 const profesor = 0.5;
 const jubilado = 0.15;
 const nombre = document.querySelector("#nombre");
-console.log(nombre)
 const codigo = document.getElementById("codigo")
-console.log(codigo);
 const email = document.querySelector("#mail");
 let cantidad = document.querySelector("#cantidadTickets");
-console.log(cantidad.value);
 const categoria = document.querySelector("#categoriaSelect");
-let totalPago = document.querySelector("#totalPago"); // aca no habias colocado el #
+let totalPago = document.querySelector("#totalPago"); 
 const btnResumen = document.querySelector("#btnResumen");
-const btnClear = document.querySelector("#btnBorrar"); //fijate que aca tampoco lo habias puesto
-
+const btnClear = document.querySelector("#btnBorrar"); 
 
 
 
@@ -22,9 +18,8 @@ btnResumen.addEventListener("click", calcularMonto);
 btnClear.addEventListener("click", limpiarRegistros);
 
 function limpiarRegistros() {
-  console.log("carga");
   nombre.value = "";
-  apellido.value = "";
+  codigo.value = "";
   email.value = "";
   cantidad.value = "";
   categoria.value = "";
@@ -34,8 +29,7 @@ function limpiarRegistros() {
 
 function validar() {
 
-   
-  if (nombre.value === "") {
+   if (nombre.value === "") {
     alert ("Ingresa nombre y apellido");
     nombre.focus();
     return false;
@@ -74,26 +68,50 @@ function validar() {
    return false;
   } 
 
+  let string = codigo.value;
+  console.log(string);
+  let arrayString = [];
+  arrayString = string.split(",");
+  console.log(arrayString);
+  console.log(arrayString.length)
 
 
-  return true;
+  if (parseInt(cantidad.value) !== arrayString.length) {
+    alert ("Ingresa cantidad acorde a los códigos ingresados");
+    cantidad.focus();
+    return false;
+   }
+
+    
+console.log(categoria.value);
+
+   if (categoria.value === '') {
+   alert ("Ingresa una categoría");
+   categoria.focus();
+   return false;
+ }
+
+return true;
   }
+
+
   const emailVálido = email => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
+  
+
+
 
 
    
 function calcularMonto() {
 
-
   if (validar()===true) {
-  
- //CALCULO:
 
 totalPago.textContent =
     ((ticket  * parseInt(cantidad.value))  - calcularDescuento(ticket, parseInt(cantidad.value)));
 }
+
 }
 
 
@@ -114,6 +132,34 @@ function calcularDescuento() {
       break;
   }
 }
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
 
 
 
